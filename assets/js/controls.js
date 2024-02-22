@@ -1,43 +1,65 @@
-document.getElementById('login').addEventListener('submit', function(event) {
-    event.preventDefault();
+const loginForm = document.getElementById('login');
+const signInForm = document.getElementById('signIn');
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+if (loginForm) {
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+    
+        if (!validationEmail(email)) {
+            document.getElementById('email').classList.add('error');
+            document.getElementById('errorEmail').style.display = 'block';
+        } else {
+            document.getElementById('email').classList.remove('error');
+            document.getElementById('errorEmail').style.display = 'none';
+        }
+    
+        if (!validationPassword(password)) {
+            document.getElementById('password').classList.add('error');
+            document.getElementById('errorPassword').style.display = 'block';
+        } else {
+            document.getElementById('password').classList.remove('error');
+            document.getElementById('errorPassword').style.display = 'none';
+        }
+    
+        if (email === "admin@admin.com" && password === "admin") {
+            document.querySelector('.acceptBox').style.display = 'flex';
+            document.querySelector('.errorBox').style.display = 'none';
+            document.querySelector('.validation').style.bottom = '20px';
+    
+            setTimeout(function() {
+                document.querySelector('.validation').style.bottom = '-100px';
+                setTimeout(function() {
+                    window.location.href = "./perfil.html";
+                }, 1000);
+            }, 3000);
+        } else {
+            document.querySelector('.acceptBox').style.display = 'none';
+            document.querySelector('.errorBox').style.display = 'flex';
+            document.querySelector('.validation').style.bottom = '20px';
+    
+            setTimeout(function() {
+                document.querySelector('.validation').style.bottom = '-100px';
+            }, 3000);
+        }
+    });
+}
 
-    if (!validationEmail(email)) {
-        document.getElementById('email').classList.add('error');
-        document.getElementById('errorEmail').style.display = 'block';
-    } else {
-        document.getElementById('email').classList.remove('error');
-        document.getElementById('errorEmail').style.display = 'none';
-    }
-
-    if (!validationPassword(password)) {
-        document.getElementById('password').classList.add('error');
-        document.getElementById('errorPassword').style.display = 'block';
-    } else {
-        document.getElementById('password').classList.remove('error');
-        document.getElementById('errorPassword').style.display = 'none';
-    }
-
-    if (validationEmail(email) && validationPassword(password)) {
-        document.querySelector('.acceptBox').style.display = 'flex';
-        document.querySelector('.errorBox').style.display = 'none';
-        document.querySelector('.validation').style.bottom = '0';
-
-        setTimeout(function() {
-            document.querySelector('.validation').style.bottom = '-100px';
-        }, 3000);
-    } else {
-        document.querySelector('.acceptBox').style.display = 'none';
-        document.querySelector('.errorBox').style.display = 'flex';
-        document.querySelector('.validation').style.bottom = '0';
-
-        setTimeout(function() {
-            document.querySelector('.validation').style.bottom = '-100px';
-        }, 3000);
-    }
-});
+if (signInForm) {
+    document.getElementById('signIn').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const email = document.getElementById('email').value;
+    
+        if (!validationEmail(email)) {
+            document.querySelector('.error').style.display = "block";
+        } else {
+            document.querySelector('.error').style.display = "none";
+        }
+    });
+}
 
 function validationEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,3 +69,15 @@ function validationEmail(email) {
 function validationPassword(password) {
     return password.length >= 4 && password.length <= 60;
 }
+
+document.querySelectorAll('.question').forEach(question => {
+    question.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+        } else {
+            answer.style.display = "block";
+        }
+    });
+});
