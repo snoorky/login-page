@@ -17,11 +17,6 @@ h1 {
     font-size: 32px;
 }
 
-h2 {
-    font-size: 32px;
-    line-height: 1.4;
-}
-
 p, label {
     font-size: 16px;
     color: #b3b3b3;
@@ -40,23 +35,6 @@ a {
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.4;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    margin: auto auto;
-    width: 90%;
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
-}
-
-header .logo img {
-    width: 50px;
-    margin-right: 16px;
 }
 
 main {
@@ -180,25 +158,8 @@ input[type="checkbox"] {
         font-size: 32px;
     }
 
-    h2 {
-        font-size: 28px;
-        display: none;
-    }
-
     p, label {
         font-size: 16px;
-    }
-
-    header {
-        width: 90%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    header .logo img {
-        width: 60px;
-        margin: 16px;
     }
 
     main {
