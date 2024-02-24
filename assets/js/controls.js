@@ -1,5 +1,4 @@
 const loginForm = document.getElementById('login');
-const signInForm = document.getElementById('signIn');
 
 if (loginForm) {
     loginForm.addEventListener('submit', function(event) {
@@ -31,9 +30,6 @@ if (loginForm) {
     
             setTimeout(function() {
                 document.querySelector('.validation').style.bottom = '-100px';
-                setTimeout(function() {
-                    window.location.href = "./perfil.html";
-                }, 1000);
             }, 3000);
         } else {
             document.querySelector('.acceptBox').style.display = 'none';
@@ -47,20 +43,6 @@ if (loginForm) {
     });
 }
 
-if (signInForm) {
-    document.getElementById('signIn').addEventListener('submit', function(event) {
-        event.preventDefault();
-    
-        const email = document.getElementById('email').value;
-    
-        if (!validationEmail(email)) {
-            document.querySelector('.error').style.display = "block";
-        } else {
-            document.querySelector('.error').style.display = "none";
-        }
-    });
-}
-
 function validationEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -69,15 +51,3 @@ function validationEmail(email) {
 function validationPassword(password) {
     return password.length >= 4 && password.length <= 60;
 }
-
-document.querySelectorAll('.question').forEach(question => {
-    question.addEventListener('click', function() {
-        const answer = this.nextElementSibling;
-
-        if (answer.style.display === "block") {
-            answer.style.display = "none";
-        } else {
-            answer.style.display = "block";
-        }
-    });
-});
